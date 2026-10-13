@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul Interaktif: Tenaga Eksogen dan Pengaruhnya</title>
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .slide-transition { transition: all 0.4s ease-in-out; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-white">
+
+    <header class="bg-slate-800/80 backdrop-blur-md border-b border-slate-700 sticky top-0 z-50 px-4 py-3 shadow-lg">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3">
+            <div class="flex items-center space-x-3">
+                <div class="bg-gradient-to-tr from-amber-600 to-amber-400 p-2.5 rounded-xl shadow-md text-white flex items-center justify-center">
+                    <i class="fa-solid fa-mountain text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg md:text-xl text-white tracking-wide">Geografi Kelas X SMA</h1>
+                    <p class="text-xs text-amber-400 font-medium">Modul Interaktif Tenaga Eksogen & Pengaruhnya</p>
+                </div>
+            </div>
+            
+            <!-- Quick Slide Jump Nav -->
+            <div class="flex items-center gap-1.5 overflow-x-auto py-1 max-w-full">
+                <button onclick="goToSlide(0)" class="nav-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-700 text-slate-300 hover:bg-amber-600 hover:text-white transition whitespace-nowrap" data-index="0">1. Pengantar</button>
+                <button onclick="goToSlide(1)" class="nav-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-700 text-slate-300 hover:bg-amber-600 hover:text-white transition whitespace-nowrap" data-index="1">2. Pelapukan</button>
+                <button onclick="goToSlide(2)" class="nav-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-700 text-slate-300 hover:bg-amber-600 hover:text-white transition whitespace-nowrap" data-index="2">3. Erosi</button>
+                <button onclick="goToSlide(3)" class="nav-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-700 text-slate-300 hover:bg-amber-600 hover:text-white transition whitespace-nowrap" data-index="3">4. Sedimentasi</button>
+                <button onclick="goToSlide(4)" class="nav-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-700 text-slate-300 hover:bg-amber-600 hover:text-white transition whitespace-nowrap" data-index="4">5. Dampak / Kehidupan</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-6 w-full flex-grow flex flex-col justify-center">
+        <div id="slide-container" class="bg-slate-800/90 border border-slate-700 rounded-2xl shadow-2xl overflow-hidden relative min-h-[520px] flex flex-col">
+            
+            <!-- SLIDE 1: PENGANTAR TENAGA EKSOGEN -->
+            <div class="slide flex flex-col lg:flex-row h-full w-full p-6 lg:p-10 items-center justify-between gap-8 active-slide" data-slide="0">
+                <div class="w-full lg:w-1/2 space-y-6">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/20 text-amber-400 border border-amber-500/30">
+                        <i class="fa-solid fa-compass"></i> Bab 4: Litosfer & Dinamika Bumi
+                    </span>
+                    <h2 class="text-3xl lg:text-4xl font-extrabold text-white tracking-tight">Tenaga Eksogen & Pembentukan Muka Bumi</h2>
+                    <p class="text-slate-300 text-sm lg:text-base leading-relaxed">
+                        Pembentukan muka bumi tidak hanya dipengaruhi oleh tenaga dari dalam bumi (endogen), tetapi juga tenaga dari luar bumi (<span class="text-amber-400 font-semibold">eksogen</span>). Tenaga ini berasal dari luar, dibantu oleh perubahan suhu, air, angin, es, reaksi kimia, dan aktivitas organisme.
+                    </p>
+                    <div class="grid grid-cols-3 gap-4 pt-2">
+                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700 text-center">
+                            <i class="fa-solid fa-cookie-bite text-amber-400 text-xl mb-2"></i>
+                            <h4 class="font-bold text-sm text-white">Pelapukan</h4>
+                            <p class="text-xs text-slate-400">Penghancuran batuan</p>
+                        </div>
+                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700 text-center">
+                            <i class="fa-solid fa-wind text-sky-400 text-xl mb-2"></i>
+                            <h4 class="font-bold text-sm text-white">Erosi</h4>
+                            <p class="text-xs text-slate-400">Pengikisan & pemindahan</p>
+                        </div>
+                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700 text-center">
+                            <i class="fa-solid fa-layer-group text-emerald-400 text-xl mb-2"></i>
+                            <h4 class="font-bold text-sm text-white">Sedimentasi</h4>
+                            <p class="text-xs text-slate-400">Pengendapan material</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Interactive Canvas Visualizer for Intro -->
+                <div class="w-full lg:w-1/2 flex flex-col items-center">
+                    <div class="w-full h-72 bg-slate-900 rounded-xl border border-slate-700 relative overflow-hidden flex items-center justify-center shadow-inner">
+                        <canvas id="canvasIntro" class="w-full h-full absolute inset-0"></canvas>
+                        <div class="absolute bottom-3 left-3 bg-slate-800/80 backdrop-blur px-3 py-1.5 rounded-lg text-xs text-slate-300 border border-slate-700">
+                            <i class="fa-solid fa-play text-amber-400 mr-1"></i> Simulasi Siklus Eksogen Dinamis
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 2: PELAPUKAN -->
+            <div class="slide hidden flex flex-col lg:flex-row h-full w-full p-6 lg:p-10 items-center justify-between gap-8" data-slide="1">
+                <div class="w-full lg:w-1/2 space-y-5">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-orange-500/20 text-orange-400 border border-orange-500/30">
+                        <i class="fa-solid fa-hammer"></i> Bagian 1: Pelapukan Batuan
+                    </span>
+                    <h2 class="text-2xl lg:text-3xl font-extrabold text-white">Perombakan Massa Batuan</h2>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Pelapukan adalah proses perombakan batuan menjadi bagian yang lebih kecil. Dibedakan menjadi 3 jenis utama berdasarkan penyebabnya:
+                    </p>
+                    <div class="space-y-3">
+                        <div onclick="setWeatheringType('mekanik')" id="btn-mekanik" class="p-3 rounded-xl border border-amber-500 bg-amber-500/10 cursor-pointer transition flex items-start gap-3">
+                            <i class="fa-solid fa-temperature-arrow-up text-amber-400 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">1. Pelapukan Mekanik (Fisik)</h4>
+                                <p class="text-xs text-slate-300">Penghancuran batuan tanpa mengubah unsur kimia (suhu ekstrem, pembekuan air es celah batuan, gletser).</p>
+                            </div>
+                        </div>
+                        <div onclick="setWeatheringType('kimiawi')" id="btn-kimiawi" class="p-3 rounded-xl border border-slate-700 bg-slate-900/60 cursor-pointer transition flex items-start gap-3 hover:border-slate-600">
+                            <i class="fa-solid fa-flask text-emerald-400 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">2. Pelapukan Kimiawi</h4>
+                                <p class="text-xs text-slate-300">Disertai perubahan susunan kimia batuan melalui proses <em>oksidasi</em> (reaksi oksigen) dan <em>hidrasi</em> (air pelarut).</p>
+                            </div>
+                        </div>
+                        <div onclick="setWeatheringType('organik')" id="btn-organik" class="p-3 rounded-xl border border-slate-700 bg-slate-900/60 cursor-pointer transition flex items-start gap-3 hover:border-slate-600">
+                            <i class="fa-solid fa-seedling text-lime-400 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">3. Pelapukan Organik</h4>
+                                <p class="text-xs text-slate-300">Dibantu organisme, penjalar akar tumbuhan, binatang kecil, hingga perusakan oleh aktivitas manusia.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Interactive Weathering Canvas -->
+                <div class="w-full lg:w-1/2 flex flex-col items-center">
+                    <div class="w-full h-72 bg-slate-900 rounded-xl border border-slate-700 relative overflow-hidden flex items-center justify-center shadow-inner">
+                        <canvas id="canvasWeathering" class="w-full h-full absolute inset-0"></canvas>
+                        <div id="weathering-label" class="absolute bottom-3 left-3 bg-slate-800/90 backdrop-blur px-3 py-1.5 rounded-lg text-xs text-amber-300 font-medium border border-slate-700">
+                            Simulasi: Pelapukan Mekanik (Tekanan Suhu & Air Es)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 3: EROSI -->
+            <div class="slide hidden flex flex-col lg:flex-row h-full w-full p-6 lg:p-10 items-center justify-between gap-8" data-slide="2">
+                <div class="w-full lg:w-1/2 space-y-5">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/20 text-sky-400 border border-sky-500/30">
+                        <i class="fa-solid fa-water"></i> Bagian 2: Erosi (Pengikisan)
+                    </span>
+                    <h2 class="text-2xl lg:text-3xl font-extrabold text-white">Pemindahan Material Batuan</h2>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Erosi adalah proses pelepasan (<span class="text-sky-400">detachment</span>) dan pemindahan (<span class="text-sky-400">transportation</span>) material batuan oleh agen alam.
+                    </p>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div onclick="setErosionType('air')" id="er-air" class="p-3 rounded-xl border border-sky-500 bg-sky-500/10 cursor-pointer transition">
+                            <h4 class="font-bold text-sm text-white flex items-center gap-2"><i class="fa-solid fa-droplet text-sky-400"></i> Erosi Air</h4>
+                            <p class="text-xs text-slate-300 mt-1">Percik, lembar, alur, hingga parit bentuk U/V.</p>
+                        </div>
+                        <div onclick="setErosionType('angin')" id="er-angin" class="p-3 rounded-xl border border-slate-700 bg-slate-900/60 cursor-pointer transition hover:border-slate-600">
+                            <h4 class="font-bold text-sm text-white flex items-center gap-2"><i class="fa-solid fa-wind text-amber-400"></i> Erosi Angin</h4>
+                            <p class="text-xs text-slate-300 mt-1">Badai pasir gurun mengikis batu berlubang (deflasi).</p>
+                        </div>
+                        <div onclick="setErosionType('abrasi')" id="er-abrasi" class="p-3 rounded-xl border border-slate-700 bg-slate-900/60 cursor-pointer transition hover:border-slate-600">
+                            <h4 class="font-bold text-sm text-white flex items-center gap-2"><i class="fa-solid fa-water text-blue-400"></i> Gelombang Laut</h4>
+                            <p class="text-xs text-slate-300 mt-1">Abrasi pantai dipengaruhi kekerasan batuan & ombak.</p>
+                        </div>
+                        <div onclick="setErosionType('glasial')" id="er-glasial" class="p-3 rounded-xl border border-slate-700 bg-slate-900/60 cursor-pointer transition hover:border-slate-600">
+                            <h4 class="font-bold text-sm text-white flex items-center gap-2"><i class="fa-solid fa-snowflake text-cyan-400"></i> Erosi Glasial</h4>
+                            <p class="text-xs text-slate-300 mt-1">Pengikisan es gletser di kutub/gunung tinggi membentuk lembah.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Interactive Erosion Canvas -->
+                <div class="w-full lg:w-1/2 flex flex-col items-center">
+                    <div class="w-full h-72 bg-slate-900 rounded-xl border border-slate-700 relative overflow-hidden flex items-center justify-center shadow-inner">
+                        <canvas id="canvasErosion" class="w-full h-full absolute inset-0"></canvas>
+                        <div id="erosion-label" class="absolute bottom-3 left-3 bg-slate-800/90 backdrop-blur px-3 py-1.5 rounded-lg text-xs text-sky-300 font-medium border border-slate-700">
+                            Simulasi: Erosi Air (Aliran hujan mengikis tanah lereng)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 4: SEDIMENTASI -->
+            <div class="slide hidden flex flex-col lg:flex-row h-full w-full p-6 lg:p-10 items-center justify-between gap-8" data-slide="3">
+                <div class="w-full lg:w-1/2 space-y-5">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                        <i class="fa-solid fa-mountain-sun"></i> Bagian 3: Sedimentasi (Pengendapan)
+                    </span>
+                    <h2 class="text-2xl lg:text-3xl font-extrabold text-white">Akumulasi Material Terbawa</h2>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Proses pengendapan material hasil erosi di tempat lebih rendah. Dibagi berdasarkan media transportasinya:
+                    </p>
+                    <div class="space-y-3">
+                        <div onclick="setSedimentType('fluvial')" id="sed-fluvial" class="p-3 rounded-xl border border-emerald-500 bg-emerald-500/10 cursor-pointer transition flex items-start gap-3">
+                            <i class="fa-solid fa-water text-emerald-400 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">1. Sedimentasi Fluvial (Air Sungai)</h4>
+                                <p class="text-xs text-slate-300">Pengendapan di badan sungai, muara, danau, membentuk <em>Kipas Aluvial</em>.</p>
+                            </div>
+                        </div>
+                        <div onclick="setSedimentType('aeolis')" id="sed-aeolis" class="p-3 rounded-xl border border-slate-700 bg-slate-900/60 cursor-pointer transition flex items-start gap-3 hover:border-slate-600">
+                            <i class="fa-solid fa-wind text-amber-400 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">2. Sedimentasi Aeolis / Aeris (Angin)</h4>
+                                <p class="text-xs text-slate-300">Membentuk <em>Gumuk Pasir</em> (Parangtritis Yogyakarta, Pameungpeuk Jabar).</p>
+                            </div>
+                        </div>
+                        <div onclick="setSedimentType('marine')" id="sed-marine" class="p-3 rounded-xl border border-slate-700 bg-slate-900/60 cursor-pointer transition flex items-start gap-3 hover:border-slate-600">
+                            <i class="fa-solid fa-umbrella-beach text-blue-400 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">3. Sedimentasi Marine (Air Laut)</h4>
+                                <p class="text-xs text-slate-300">Membentuk pantai, bar (gosong pasir), dan <em>Tombolo</em> (penghubung pulau utama).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Interactive Sedimentation Canvas -->
+                <div class="w-full lg:w-1/2 flex flex-col items-center">
+                    <div class="w-full h-72 bg-slate-900 rounded-xl border border-slate-700 relative overflow-hidden flex items-center justify-center shadow-inner">
+                        <canvas id="canvasSediment" class="w-full h-full absolute inset-0"></canvas>
+                        <div id="sediment-label" class="absolute bottom-3 left-3 bg-slate-800/90 backdrop-blur px-3 py-1.5 rounded-lg text-xs text-emerald-300 font-medium border border-slate-700">
+                            Simulasi: Sedimentasi Fluvial (Pembentukan Kipas Aluvial)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 5: PENGARUH / DAMPAK TERHADAP KEHIDUPAN -->
+            <div class="slide hidden flex flex-col lg:flex-row h-full w-full p-6 lg:p-10 items-center justify-between gap-8" data-slide="4">
+                <div class="w-full lg:w-1/2 space-y-5">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-purple-500/20 text-purple-400 border border-purple-500/30">
+                        <i class="fa-solid fa-earth-asia"></i> Pengaruh Terhadap Kehidupan
+                    </span>
+                    <h2 class="text-2xl lg:text-3xl font-extrabold text-white">Dampak Positif & Negatif</h2>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Proses eksogen membawa berkah bagi kesuburan tanah dan keindahan alam, namun juga menyimpan potensi bencana jika tidak dijaga.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-emerald-950/40 border border-emerald-500/30 p-4 rounded-xl">
+                            <h4 class="font-bold text-emerald-400 text-sm mb-2 flex items-center gap-2"><i class="fa-solid fa-circle-check"></i> Dampak Positif</h4>
+                            <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
+                                <li>Tanah subur akibat pelapukan & sedimentasi fluvial (cocok untuk pertanian).</li>
+                                <li>Destinasi wisata alam unik (Gumuk Pasir Parangtritis, Tombolo, Pantai indah).</li>
+                                <li>Sumber material bangunan & endapan bermanfaat.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-rose-950/40 border border-rose-500/30 p-4 rounded-xl">
+                            <h4 class="font-bold text-rose-400 text-sm mb-2 flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation"></i> Risiko & Ancaman</h4>
+                            <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
+                                <li>Tanah longsor akibat erosi lereng gundul.</li>
+                                <li>Abrasi pantai yang mengancam pemukiman pesisir.</li>
+                                <li>Pendangkalan sungai akibat sedimentasi berlebih.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Interactive Impact Summary Canvas -->
+                <div class="w-full lg:w-1/2 flex flex-col items-center">
+                    <div class="w-full h-72 bg-slate-900 rounded-xl border border-slate-700 relative overflow-hidden flex items-center justify-center shadow-inner">
+                        <canvas id="canvasImpact" class="w-full h-full absolute inset-0"></canvas>
+                        <div class="absolute bottom-3 left-3 bg-slate-800/80 backdrop-blur px-3 py-1.5 rounded-lg text-xs text-purple-300 border border-slate-700">
+                            <i class="fa-solid fa-seedling text-purple-400 mr-1"></i> Keseimbangan Alam & Aktivitas Manusia
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Navigation Controls Footer -->
+        <div class="flex justify-between items-center mt-4 px-2">
+            <button onclick="prevSlide()" id="prev-btn" class="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm border border-slate-700 shadow transition disabled:opacity-40 disabled:cursor-not-allowed">
+                <i class="fa-solid fa-arrow-left"></i> Sebelumnya
+            </button>
+            <div id="slide-indicator" class="text-sm font-medium text-slate-400">
+                Slide <span id="current-slide-num" class="text-amber-400 font-bold">1</span> dari 5
+            </div>
+            <button onclick="nextSlide()" id="next-btn" class="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-semibold text-sm shadow transition">
+                Selanjutnya <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </main>
+
+    <footer class="text-center py-4 text-xs text-slate-500 border-t border-slate-800">
+        Modul Pembelajaran Geografi SMA Kelas X • Tenaga Eksogen dan Pengaruhnya Terhadap Kehidupan
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 5;
+
+        // Navigation Controllers
+        function updateSlideView() {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach((slide, idx) => {
+                if (idx === currentSlide) {
+                    slide.classList.remove('hidden');
+                    slide.classList.add('flex');
+                } else {
+                    slide.classList.add('hidden');
+                    slide.classList.remove('flex');
+                }
+            });
+
+            // Update top nav buttons
+            document.querySelectorAll('.nav-btn').forEach((btn, idx) => {
+                if (idx === currentSlide) {
+                    btn.className = "nav-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-amber-600 text-white transition whitespace-nowrap shadow-md";
+                } else {
+                    btn.className = "nav-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600 hover:text-white transition whitespace-nowrap";
+                }
+            });
+
+            document.getElementById('current-slide-num').innerText = currentSlide + 1;
+            document.getElementById('prev-btn').disabled = currentSlide === 0;
+            document.getElementById('next-btn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlideView();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlideView();
+            }
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlideView();
+        }
+
+        // --- CANVAS ANIMATIONS ---
+
+        // 1. Intro Animation: Dynamic Earth Exogenic Cycle
+        function initCanvasIntro() {
+            const canvas = document.getElementById('canvasIntro');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let w = canvas.width = canvas.parentElement.clientWidth;
+            let h = canvas.height = canvas.parentElement.clientHeight;
+
+            window.addEventListener('resize', () => {
+                if(canvas.parentElement) {
+                    w = canvas.width = canvas.parentElement.clientWidth;
+                    h = canvas.height = canvas.parentElement.clientHeight;
+                }
+            });
+
+            let particles = [];
+            for(let i=0; i<40; i++) {
+                particles.push({
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    vx: (Math.random() - 0.5) * 1.5,
+                    vy: Math.random() * 1.5 + 0.5,
+                    radius: Math.random() * 3 + 1,
+                    color: ['#f59e0b', '#38bdf8', '#34d399'][Math.floor(Math.random()*3)]
+                });
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, w, h);
+                // Draw landscape backdrop
+                ctx.fillStyle = '#1e293b';
+                ctx.beginPath();
+                ctx.moveTo(0, h * 0.7);
+                ctx.lineTo(w * 0.3, h * 0.4);
+                ctx.lineTo(w * 0.7, h * 0.6);
+                ctx.lineTo(w, h * 0.5);
+                ctx.lineTo(w, h);
+                ctx.lineTo(0, h);
+                ctx.fill();
+
+                // Draw moving particles representing exogenic agents (water, wind, sediments)
+                particles.forEach(p => {
+                    ctx.fillStyle = p.color;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    if(p.y > h) { p.y = 0; p.x = Math.random() * w; }
+                    if(p.x < 0 || p.x > w) p.vx *= -1;
+                });
+
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        // 2. Weathering Simulation
+        let currentWeathering = 'mekanik';
+        function setWeatheringType(type) {
+            currentWeathering = type;
+            ['mekanik', 'kimiawi', 'organik'].forEach(t => {
+                const btn = document.getElementById(`btn-${t}`);
+                if(t === type) {
+                    btn.className = "p-3 rounded-xl border border-amber-500 bg-amber-500/10 cursor-pointer transition flex items-start gap-3 shadow";
+                } else {
+                    btn.className = "p-3 rounded-xl border border-slate-700 bg-slate-900/60 cursor-pointer transition flex items-start gap-3 hover:border-slate-600";
+                }
+            });
+            const labels = {
+                mekanik: "Simulasi: Pelapukan Mekanik (Tekanan Suhu & Air Es)",
+                kimiawi: "Simulasi: Pelapukan Kimiawi (Reaksi Oksidasi & Hidrasi Mineral)",
+                organik: "Simulasi: Pelapukan Organik (Penjalaran Akar Tumbuhan & Organisme)"
+            };
+            document.getElementById('weathering-label').innerText = labels[type];
+        }
+
+        function initCanvasWeathering() {
+            const canvas = document.getElementById('canvasWeathering');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let w = canvas.width = canvas.parentElement.clientWidth;
+            let h = canvas.height = canvas.parentElement.clientHeight;
+
+            let crackAnim = 0;
+            function animate() {
+                ctx.clearRect(0, 0, w, h);
+                
+                // Draw rock block
+                ctx.fillStyle = '#475569';
+                ctx.fillRect(w/2 - 90, h/2 - 50, 180, 100);
+
+                if (currentWeathering === 'mekanik') {
+                    // Draw cracking ice/temperature effect
+                    ctx.strokeStyle = '#38bdf8';
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    ctx.moveTo(w/2 - 20, h/2 - 50);
+                    ctx.lineTo(w/2 - 10, h/2 + (Math.sin(crackAnim)*10));
+                    ctx.lineTo(w/2 + 20, h/2 + 50);
+                    ctx.stroke();
+
+                    ctx.fillStyle = '#bae6fd';
+                    ctx.font = '12px Inter';
+                    ctx.fillText('Es / Pemuaian Suhu', w/2 - 60, h/2 - 60);
+                } else if (currentWeathering === 'kimiawi') {
+                    // Draw chemical reaction color spots
+                    ctx.fillStyle = 'rgba(239, 68, 68, 0.6)';
+                    ctx.beginPath();
+                    ctx.arc(w/2 - 30, h/2, 15 + Math.sin(crackAnim)*5, 0, Math.PI*2);
+                    ctx.fill();
+
+                    ctx.fillStyle = 'rgba(52, 211, 153, 0.6)';
+                    ctx.beginPath();
+                    ctx.arc(w/2 + 40, h/2 - 10, 12 + Math.cos(crackAnim)*4, 0, Math.PI*2);
+                    ctx.fill();
+
+                    ctx.fillStyle = '#34d399';
+                    ctx.font = '12px Inter';
+                    ctx.fillText('Oksidasi & Hidrasi Mineral', w/2 - 70, h/2 - 60);
+                } else {
+                    // Draw roots breaking rock
+                    ctx.strokeStyle = '#a3e635';
+                    ctx.lineWidth = 4;
+                    ctx.beginPath();
+                    ctx.moveTo(w/2, h/2 - 50);
+                    ctx.quadraticCurveTo(w/2 - 30, h/2, w/2 - 40, h/2 + 50);
+                    ctx.moveTo(w/2, h/2 - 20);
+                    ctx.lineTo(w/2 + 40, h/2 + 50);
+                    ctx.stroke();
+
+                    ctx.fillStyle = '#a3e635';
+                    ctx.font = '12px Inter';
+                    ctx.fillText('Penjalar Akar Tanaman', w/2 - 60, h/2 - 60);
+                }
+
+                crackAnim += 0.05;
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        // 3. Erosion Simulation
+        let currentErosion = 'air';
+        function setErosionType(type) {
+            currentErosion = type;
+            ['air', 'angin', 'abrasi', 'glasial'].forEach(t => {
+                const el = document.getElementById(`er-${t}`);
+                if(t === type) {
+                    el.className = "p-3 rounded-xl border border-sky-500 bg-sky-500/10 cursor-pointer transition shadow";
+                } else {
+                    el.className = "p-3 rounded-xl border border-slate-700 bg-slate-900/60 cursor-pointer transition hover:border-slate-600";
+                }
+            });
+            const labels = {
+                air: "Simulasi: Erosi Air (Aliran hujan mengikis tanah lereng)",
+                angin: "Simulasi: Erosi Angin (Badai pasir mengikis batu gurun)",
+                abrasi: "Simulasi: Gelombang Laut / Abrasi (Ombak menghantam tebing pantai)",
+                glasial: "Simulasi: Erosi Glasial (Aliran es gletser mengikis lembah)"
+            };
+            document.getElementById('erosion-label').innerText = labels[type];
+        }
+
+        function initCanvasErosion() {
+            const canvas = document.getElementById('canvasErosion');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let w = canvas.width = canvas.parentElement.clientWidth;
+            let h = canvas.height = canvas.parentElement.clientHeight;
+
+            let drops = [];
+            for(let i=0; i<30; i++) {
+                drops.push({x: Math.random()*w, y: Math.random()*h, speed: Math.random()*3+2});
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, w, h);
+
+                if (currentErosion === 'air') {
+                    // Draw slope and raindrops sliding down
+                    ctx.fillStyle = '#334155';
+                    ctx.beginPath();
+                    ctx.moveTo(0, h);
+                    ctx.lineTo(w, h*0.3);
+                    ctx.lineTo(w, h);
+                    ctx.fill();
+
+                    ctx.strokeStyle = '#38bdf8';
+                    ctx.lineWidth = 2;
+                    drops.forEach(d => {
+                        ctx.beginPath();
+                        ctx.moveTo(d.x, d.y);
+                        ctx.lineTo(d.x - 5, d.y + 10);
+                        ctx.stroke();
+                        d.x -= 2;
+                        d.y += d.speed;
+                        if(d.y > h || d.x < 0) { d.x = w * Math.random(); d.y = 0; }
+                    });
+                } else if (currentErosion === 'angin') {
+                    // Draw wind particles sweeping across rock
+                    ctx.fillStyle = '#64748b';
+                    ctx.beginPath();
+                    ctx.ellipse(w/2, h/2 + 20, 70, 30, 0, 0, Math.PI*2);
+                    ctx.fill();
+
+                    ctx.strokeStyle = '#f59e0b';
+                    ctx.lineWidth = 2;
+                    drops.forEach(d => {
+                        ctx.beginPath();
+                        ctx.moveTo(d.x, d.y);
+                        ctx.lineTo(d.x + 20, d.y);
+                        ctx.stroke();
+                        d.x += d.speed * 2;
+                        if(d.x > w) d.x = 0;
+                    });
+                } else if (currentErosion === 'abrasi') {
+                    // Draw waves hitting cliff
+                    ctx.fillStyle = '#475569';
+                    ctx.fillRect(w - 70, 0, 70, h);
+
+                    ctx.fillStyle = '#3b82f6';
+                    let waveOffset = Math.sin(Date.now() * 0.005) * 20;
+                    ctx.beginPath();
+                    ctx.arc(w - 70, h/2 + waveOffset, 40, 0, Math.PI*2);
+                    ctx.fill();
+                } else {
+                    // Glasial
+                    ctx.fillStyle = '#e0f2fe';
+                    ctx.fillRect(0, 0, w, h);
+                    ctx.fillStyle = '#0284c7';
+                    ctx.font = '14px Inter';
+                    ctx.fillText('Aliran Es Gletser Bergerak Lambat Membentuk Lembah U', 20, h/2);
+                }
+
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        // 4. Sedimentation Simulation
+        let currentSediment = 'fluvial';
+        function setSedimentType(type) {
+            currentSediment = type;
+            ['fluvial', 'aeolis', 'marine'].forEach(t => {
+                const el = document.getElementById(`sed-${t}`);
+                if(t === type) {
+                    el.className = "p-3 rounded-xl border border-emerald-500 bg-emerald-500/10 cursor-pointer transition flex items-start gap-3 shadow";
+                } else {
+                    el.className = "p-3 rounded-xl border border-slate-700 bg-slate-900/60 cursor-pointer transition flex items-start gap-3 hover:border-slate-600";
+                }
+            });
+            const labels = {
+                fluvial: "Simulasi: Sedimentasi Fluvial (Pembentukan Kipas Aluvial di muara/lereng)",
+                aeolis: "Simulasi: Sedimentasi Aeolis (Pembentukan Gumuk Pasir / Sand Dunes)",
+                marine: "Simulasi: Sedimentasi Marine (Pembentukan Tombolo & Gosong Pasir Pantai)"
+            };
+            document.getElementById('sediment-label').innerText = labels[type];
+        }
+
+        function initCanvasSediment() {
+            const canvas = document.getElementById('canvasSediment');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let w = canvas.width = canvas.parentElement.clientWidth;
+            let h = canvas.height = canvas.parentElement.clientHeight;
+
+            let angle = 0;
+            function animate() {
+                ctx.clearRect(0, 0, w, h);
+
+                if (currentSediment === 'fluvial') {
+                    // Draw Alluvial Fan / Kipas Aluvial
+                    ctx.fillStyle = '#059669';
+                    ctx.beginPath();
+                    ctx.moveTo(w/2, 20);
+                    ctx.arc(w/2, 20, 100 + Math.sin(angle)*5, 0, Math.PI);
+                    ctx.fill();
+                    ctx.fillStyle = '#34d399';
+                    ctx.font = '12px Inter';
+                    ctx.fillText('Material Mengendap Membuka (Kipas Aluvial)', w/2 - 110, h - 30);
+                } else if (currentSediment === 'aeolis') {
+                    // Draw Sand Dunes / Gumuk Pasir
+                    ctx.fillStyle = '#f59e0b';
+                    ctx.beginPath();
+                    ctx.moveTo(20, h - 40);
+                    ctx.quadraticCurveTo(w/2, h - 120 + Math.sin(angle)*10, w - 20, h - 40);
+                    ctx.lineTo(w, h);
+                    ctx.lineTo(0, h);
+                    ctx.fill();
+                    ctx.fillStyle = '#fde68a';
+                    ctx.font = '12px Inter';
+                    ctx.fillText('Gumuk Pasir (Parangtritis / Pameungpeuk)', w/2 - 110, h - 20);
+                } else {
+                    // Marine (Tombolo)
+                    ctx.fillStyle = '#3b82f6';
+                    ctx.fillRect(0, 0, w, h * 0.7);
+                    ctx.fillStyle = '#10b981'; // tombolo bridge
+                    ctx.beginPath();
+                    ctx.moveTo(w/2 - 20, 0);
+                    ctx.lineTo(w/2 + 20, 0);
+                    ctx.lineTo(w/2 + 40, h * 0.7);
+                    ctx.lineTo(w/2 - 40, h * 0.7);
+                    ctx.fill();
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = '12px Inter';
+                    ctx.fillText('Tombolo (Menghubungkan Pulau & Daratan)', w/2 - 110, h - 20);
+                }
+
+                angle += 0.03;
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        // 5. Impact Canvas
+        function initCanvasImpact() {
+            const canvas = document.getElementById('canvasImpact');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let w = canvas.width = canvas.parentElement.clientWidth;
+            let h = canvas.height = canvas.parentElement.clientHeight;
+
+            let pulse = 0;
+            function animate() {
+                ctx.clearRect(0, 0, w, h);
+                
+                // Draw fertile green valley & human life equilibrium
+                ctx.fillStyle = '#065f46';
+                ctx.fillRect(0, h * 0.6, w, h * 0.4);
+
+                ctx.fillStyle = '#34d399';
+                ctx.beginPath();
+                ctx.arc(w/2, h * 0.6, 30 + Math.sin(pulse)*5, 0, Math.PI*2);
+                ctx.fill();
+
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 13px Inter';
+                ctx.textAlign = 'center';
+                ctx.fillText('Tanah Subur & Keseimbangan Ekosistem', w/2, h * 0.3);
+
+                pulse += 0.04;
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        // Initialize all on load
+        window.onload = function() {
+            updateSlideView();
+            initCanvasIntro();
+            initCanvasWeathering();
+            initCanvasErosion();
+            initCanvasSediment();
+            initCanvasImpact();
+        };
+    </script>
+</body>
+</html>
